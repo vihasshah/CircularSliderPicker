@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { ImagePicker, Permissions } from 'expo';
+import ImageCropper from 'react-native-image-crop-picker'
 
 export default class PickerScreen extends React.Component {
     _checkMultiPermissions = async () => {
@@ -22,9 +23,11 @@ export default class PickerScreen extends React.Component {
     _renderImagePicker = async () => {
         
         let result = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing: false,
+            allowsEditing: true,
+            aspect:[1,1],
+            quality:1,
         });
-
+        console.log(result)
         this.props.navigation.navigate("edit",{URI: result.uri})
     }
 
