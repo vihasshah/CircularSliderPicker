@@ -7,19 +7,11 @@ export default class EditingScreen extends Component {
         let imgUri = this.props.navigation.getParam("URI")
         return (
             <View style={styles.container}>
-
-                <View style={styles.wrapper}>
-                    <PinchZoomView>
-                        <View style={styles.imageWrapper}>
-                            <Image source={{ uri: imgUri}} style={styles.image} />
-                        </View>
-                    </PinchZoomView>
-                </View>
-                <View style={styles.selectionView} pointerEvents="none"/>
-                {/* <PinchZoomView> */}
-                   
-                {/* </PinchZoomView> */}
-                
+                <PinchZoomView>
+                    <View style={styles.imageWrapper}>
+                        <Image source={{ uri: imgUri}} style={styles.image} />
+                    </View>
+                </PinchZoomView>
             </View>
         )
     }
@@ -28,27 +20,20 @@ export default class EditingScreen extends Component {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        alignItems:'center',
-        justifyContent:'center'
-    },
-    wrapper:{
-        ...StyleSheet.absoluteFillObject,
-        flex:1,
-    },
-    selectionView:{
-        width:Dimensions.get('window').width / 2,
-        height:Dimensions.get('window').width / 2,
-        borderRadius:(Dimensions.get('window').width / 2) / 2,
-        backgroundColor:"#fff6",
-        alignSelf:'center'
+        justifyContent:'center',
+        borderWidth:1,borderColor:'#000'
     },
     imageWrapper:{
         flex:1,
+        justifyContent:'center',
+        borderWidth:1,borderColor:'#000'
     },
     image:{
-        flex:1,
-        height:null,
-        width:null,
-        resizeMode:'contain'
+        width:Dimensions.get('window').width,
+        height:Dimensions.get('window').width,
+        borderRadius:Dimensions.get('window').width / 2,
+        backgroundColor:'#000',
+        overflow:'hidden',
+        resizeMode:'stretch'
     }
 })
