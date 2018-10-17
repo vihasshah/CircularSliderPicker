@@ -1,14 +1,42 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import ImagePicker from 'react-native-image-picker'
+
+const options = {
+    title:'Select Image',
+    customButtons:[
+        {
+            name:'camera',
+            title:'Take a new picture'
+        },
+        {
+            name:'library',
+            title:'Select from existing'
+        }
+    ],
+    storageOptions: {
+        skipBackup: true,
+        path: 'images',
+    },
+}
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
+    renderImagePicker = () => {
+        ImagePicker.showImagePicker(options,(response) => {
+            console.log(response)
+        })
+    }
+    render = () => {
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity onPress={this.renderImagePicker}>
+                    <View style={styles.imageBtn}>
+                        <Text>select Image</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -18,4 +46,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  imageBtn:{
+    padding:10,
+    backgroundColor:'#0003'
+  }
 });
